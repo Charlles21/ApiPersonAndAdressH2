@@ -5,10 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.attornatus_spring.attornatus.Dtos.PersonDto;
+
 import br.com.attornatus_spring.attornatus.Services.PersonServicesImpl;
 
 @RestController
@@ -16,7 +20,7 @@ import br.com.attornatus_spring.attornatus.Services.PersonServicesImpl;
 public class PersonController {
     
     @Autowired
-    PersonServicesImpl servicesImplPerson;
+    private PersonServicesImpl servicesImplPerson;
 
 
     @GetMapping("/listar")
@@ -24,4 +28,13 @@ public class PersonController {
         
         return ResponseEntity.ok(servicesImplPerson.listAllPerson());
     }
+
+    @PutMapping("/cadastrar")
+    public PersonDto registerAnewPerson(@RequestBody PersonDto person){       
+
+        return servicesImplPerson.registerAnewPerson(person);
+    }
+
+
+
 }

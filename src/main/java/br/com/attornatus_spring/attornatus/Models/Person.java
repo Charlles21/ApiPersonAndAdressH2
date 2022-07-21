@@ -1,29 +1,28 @@
 package br.com.attornatus_spring.attornatus.Models;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-
 import javax.persistence.Table;
-
-
 
 @Entity
 @Table(name = "person")
 public class Person {    
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private LocalDate birthday;
     @ManyToMany(mappedBy = "")
-    private List<Adress> listOfAdress;
+    private List<Adress> listOfAdress = new ArrayList<>();
 
-    
+  
 
     public Person(Long id, String name, LocalDate birthday, List<Adress> listOfAdress) {
         this.id = id;
@@ -62,7 +61,8 @@ public class Person {
     public void setId(Long id) {
         this.id = id;
     }
-    
+
+
     
    
 }
