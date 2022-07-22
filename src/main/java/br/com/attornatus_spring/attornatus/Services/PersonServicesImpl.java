@@ -1,6 +1,7 @@
 package br.com.attornatus_spring.attornatus.Services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,18 @@ public class PersonServicesImpl implements PersonServices{
         return returnExpetedResult(personRegister);
     }
 
+    @Override
+    public Optional<PersonDto> findPersonById(Long id) {
+       Optional<Person> person = repositoryPerson.findById(id);   
+       
+       if(person.isPresent()){
+        PersonDto personDto = new ModelMapper().map(person.get(), PersonDto.class);
+        return Optional.of(personDto);
+       }       
+       
+       return null;
+    }
+
     private PersonDto returnExpetedResult(Person personRegister) {
         return mapper.map(personRegister, PersonDto.class);
     }
@@ -40,6 +53,8 @@ public class PersonServicesImpl implements PersonServices{
         Person personRegister = mapper.map(person, Person.class);        
         return personRegister;
     }
+
+    
 
    
     

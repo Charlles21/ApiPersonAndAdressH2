@@ -15,12 +15,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "person")
 public class Person {    
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private LocalDate birthday;
     @ManyToMany(mappedBy = "")
-    private List<Adress> listOfAdress = new ArrayList<>();
+    private List<Adress> listOfAdress;
 
   
 
@@ -32,9 +32,7 @@ public class Person {
     }
 
     
-    public Person() {
-    }
-
+    public Person() {}
 
     public String getName() {
         return name;

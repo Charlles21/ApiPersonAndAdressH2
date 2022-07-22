@@ -1,12 +1,16 @@
 package br.com.attornatus_spring.attornatus.Controllers;
 
+
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,10 +33,18 @@ public class PersonController {
         return ResponseEntity.ok(servicesImplPerson.listAllPerson());
     }
 
-    @PutMapping("/cadastrar")
-    public PersonDto registerAnewPerson(@RequestBody PersonDto person){       
 
-        return servicesImplPerson.registerAnewPerson(person);
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<PersonDto>> findPersonById(@PathVariable Long id){
+       
+        return ResponseEntity.ok(servicesImplPerson.findPersonById(id));
+    }
+
+    @PostMapping("/cadastrar")
+    public ResponseEntity<PersonDto> registerAnewPerson(@RequestBody PersonDto person){          
+                                
+        return ResponseEntity.ok(servicesImplPerson.registerAnewPerson(person));      
+      
     }
 
 
