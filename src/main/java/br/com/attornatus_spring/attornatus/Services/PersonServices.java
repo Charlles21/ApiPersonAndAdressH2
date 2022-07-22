@@ -10,4 +10,6 @@ public interface PersonServices  {
      List<PersonDto> listAllPerson();
      PersonDto registerAnewPerson(PersonDto person);
      Optional<PersonDto> findPersonById(Long id);
+     PersonDto updatePersonById(Long id, PersonDto personDto);
+
 }

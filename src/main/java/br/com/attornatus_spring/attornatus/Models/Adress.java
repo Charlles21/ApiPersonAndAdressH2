@@ -6,6 +6,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import br.com.attornatus_spring.attornatus.Enums.StatusAdress;
@@ -22,12 +24,15 @@ public class Adress {
     private String city;
     @Enumerated(EnumType.STRING)
     private StatusAdress status_adress;
+    @JoinColumn(name = "person_id")
+    @ManyToOne
+    private Person person;
 
-    public String getPatio() {
+    public String getStreet() {
         return street;
     }
-    public void setPatio(String patio) {
-        this.street = patio;
+    public void setPatio(String street) {
+        this.street = street;
     }
     public String getCEP() {
         return CEP;
