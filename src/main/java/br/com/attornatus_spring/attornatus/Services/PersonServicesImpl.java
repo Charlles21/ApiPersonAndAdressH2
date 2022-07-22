@@ -40,9 +40,9 @@ public class PersonServicesImpl implements PersonServices{
        if(person.isPresent()){
         PersonDto personDto = new ModelMapper().map(person.get(), PersonDto.class);
         return Optional.of(personDto);
-       }       
+       }
        
-       return null;
+       return Optional.empty();
     }
 
     private PersonDto returnExpetedResult(Person personRegister) {
