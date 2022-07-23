@@ -38,7 +38,8 @@ public class PersonServicesImpl implements PersonServices{
        Optional<Person> person = repositoryPerson.findById(id);   
        
        if(person.isPresent()){
-        PersonDto personDto = new ModelMapper().map(person.get(), PersonDto.class);
+        person.get();
+        PersonDto personDto = new ModelMapper().map(person.get(), PersonDto.class);        
         return Optional.of(personDto);
        }
               

@@ -18,14 +18,10 @@ public class PersonDto {
         this.birthday = person.getBirthday();        
     }
     
-    
-    
     public PersonDto(String name, LocalDate birthday) {
         this.name = name;
         this.birthday = birthday;       
     }
-
-
 
     public PersonDto() {
     }
@@ -36,6 +32,14 @@ public class PersonDto {
     public LocalDate getBirthday() {
         return birthday;
     }  
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
 
     public static List<PersonDto> changedPersonToDtoPerson(List<Person> person){
         return person.stream().map(PersonDto::new).collect(Collectors.toList());
