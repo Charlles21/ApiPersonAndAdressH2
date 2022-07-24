@@ -7,6 +7,5 @@ import br.com.attornatus_spring.attornatus.Dtos.AdressDto;
 
 public interface AdressServices {
     List<AdressDto> listAllAdress();
-    List<AdressDto> listAllPersonAdressById(Long id);
-    AdressDto registerAnewAdressForPerson(Long id, AdressDto adress);
+    List<AdressDto> listAllPersonAdressById(Long id);  
 }

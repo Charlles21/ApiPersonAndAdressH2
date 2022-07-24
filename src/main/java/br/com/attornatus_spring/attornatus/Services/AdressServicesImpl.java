@@ -7,18 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.attornatus_spring.attornatus.Dtos.AdressDto;
-
-import br.com.attornatus_spring.attornatus.Models.Adress;
-import br.com.attornatus_spring.attornatus.Models.Person;
 import br.com.attornatus_spring.attornatus.Repositorys.AdressRepository;
 
 @Service
 public class AdressServicesImpl implements AdressServices {
 
     @Autowired
-    private AdressRepository repositoryAdress;
-    @Autowired
-    private PersonServicesImpl servicesPersonImpl; 
+    private AdressRepository repositoryAdress;   
 
     ModelMapper mapper = new ModelMapper();
 
@@ -32,15 +27,6 @@ public class AdressServicesImpl implements AdressServices {
     public List<AdressDto> listAllPersonAdressById(Long id) {       
         return AdressDto.changedPersonToDtoPerson(repositoryAdress.findAllAdressByPerson_Id(id));
     }
-
-
-    @Override
-    public AdressDto registerAnewAdressForPerson(Long id, AdressDto adress) {
-        Adress adressRegister = mapper.map(adress, Adress.class);
-        Person person = new ModelMapper().map(servicesPersonImpl.findPersonById(id).get(), Person.class);      
-        //adressRegister.setPerson(person);
-        repositoryAdress.save(adressRegister);          
-        return mapper.map(adressRegister, AdressDto.class);
-    }
+   
     
 }

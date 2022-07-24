@@ -32,8 +32,5 @@ public class AdressController {
         return ResponseEntity.ok(servicesAdresssImpl.listAllPersonAdressById(id));
     }
 
-    @PostMapping("/pessoa/{id}")
-    public ResponseEntity<AdressDto> registerAnewAdressForPerson(@PathVariable Long id, @RequestBody AdressDto adress){
-        return ResponseEntity.ok(servicesAdresssImpl.registerAnewAdressForPerson(id, adress));
-    }
 }
+    
