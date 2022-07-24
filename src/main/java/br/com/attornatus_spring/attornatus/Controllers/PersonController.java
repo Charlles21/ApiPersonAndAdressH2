@@ -56,7 +56,7 @@ public class PersonController {
     }
 
     @PutMapping("/adicionar/endereço/{id}")
-    public ResponseEntity<Optional<PersonDto>> salvaPessoaComEndereco(@PathVariable Long id, @RequestBody Adress adress){
+    public ResponseEntity<Optional<PersonDto>> registerAnewAdressForPerson(@PathVariable Long id, @RequestBody Adress adress){
         return ResponseEntity.ok(servicesImplPerson.registerAnewAdressToPerosnById(id, adress));
     }
 
