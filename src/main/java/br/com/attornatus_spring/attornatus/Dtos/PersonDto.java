@@ -1,30 +1,26 @@
 package br.com.attornatus_spring.attornatus.Dtos;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.stream.Collectors;
 
-import br.com.attornatus_spring.attornatus.Models.Person;
+import java.util.List;
+import br.com.attornatus_spring.attornatus.Models.Adress;
 
 public class PersonDto {
-    
+    private Long id;
     private String name;
-    private LocalDate birthday; 
- 
-  
-
-    public PersonDto(Person person) {
-        this.name = person.getName();
-        this.birthday = person.getBirthday();        
+    private LocalDate birthday;
+    private List<Adress> listOfAdress;     
+    
+    public PersonDto(String name, LocalDate birthday, List<Adress> listOfAdress) {
+        this.name = name;
+        this.birthday = birthday;
+        this.listOfAdress = listOfAdress;
     }
     
-    public PersonDto(String name, LocalDate birthday) {
-        this.name = name;
-        this.birthday = birthday;       
-    }
-
+    
     public PersonDto() {
     }
+
 
     public String getName() {
         return name;
@@ -41,9 +37,26 @@ public class PersonDto {
         this.birthday = birthday;
     }
 
-    public static List<PersonDto> changedPersonToDtoPerson(List<Person> person){
-        return person.stream().map(PersonDto::new).collect(Collectors.toList());
+    public List<Adress> getListOfAdress() {
+        return listOfAdress;
+    }
+
+
+    public void setListOfAdress(List<Adress> listOfAdress) {
+        this.listOfAdress = listOfAdress;
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+
+    public void setId(Long id) {
+        this.id = id;
     }   
+
+    
     
     
       

@@ -1,7 +1,9 @@
 package br.com.attornatus_spring.attornatus.Services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,21 +11,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.attornatus_spring.attornatus.Dtos.PersonDto;
+import br.com.attornatus_spring.attornatus.Models.Adress;
 import br.com.attornatus_spring.attornatus.Models.Person;
+import br.com.attornatus_spring.attornatus.Repositorys.AdressRepository;
 import br.com.attornatus_spring.attornatus.Repositorys.PersonRepository;
 @Service
 public class PersonServicesImpl implements PersonServices{
 
     @Autowired
     private PersonRepository repositoryPerson;
+    @Autowired
+    private AdressRepository repositoryAdress;
 
     private ModelMapper mapper = new ModelMapper();
+    
 
 
     @Override
     public List<PersonDto> listAllPerson() {
-        
-        return PersonDto.changedPersonToDtoPerson(repositoryPerson.findAll());
+        List<Person> person = repositoryPerson.findAll();
+
+        return person.stream().map(p -> mapper.map(p, PersonDto.class)).collect(Collectors.toList());
     }
 
     @Override
@@ -56,6 +64,27 @@ public class PersonServicesImpl implements PersonServices{
             return mapper.map(personUpdate, PersonDto.class);
         }
         
+        return null;
+    }
+
+   
+    public Optional<PersonDto> registerAnewAdressToPerosnById(Long id, Adress adress) {
+        Optional<Person> personFinded = repositoryPerson.findById(id);
+
+        if(personFinded.isPresent()){
+            List<Adress> adressList = new ArrayList<>();
+            personFinded.get();
+            PersonDto personDto = new ModelMapper().map(personFinded.get(), PersonDto.class);
+            adress.setPerson(personFinded.get());
+            repositoryAdress.save(adress);   
+            adressList.add(adress);                              
+            personDto.setListOfAdress(adressList);
+            personDto.setId(id);
+            updatePersonById(id, personDto);
+            return Optional.of(personDto);
+
+           }  
+     
         return null;
     }
 

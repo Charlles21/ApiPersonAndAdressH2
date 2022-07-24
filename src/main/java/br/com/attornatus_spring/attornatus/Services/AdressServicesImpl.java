@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.attornatus_spring.attornatus.Dtos.AdressDto;
-import br.com.attornatus_spring.attornatus.Dtos.PersonDto;
+
 import br.com.attornatus_spring.attornatus.Models.Adress;
 import br.com.attornatus_spring.attornatus.Models.Person;
 import br.com.attornatus_spring.attornatus.Repositorys.AdressRepository;

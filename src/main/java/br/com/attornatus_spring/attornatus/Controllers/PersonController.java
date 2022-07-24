@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.attornatus_spring.attornatus.Dtos.PersonDto;
-
+import br.com.attornatus_spring.attornatus.Models.Adress;
 import br.com.attornatus_spring.attornatus.Services.PersonServicesImpl;
 
 @RestController
@@ -53,6 +53,11 @@ public class PersonController {
     public ResponseEntity<PersonDto> updatePersonById(Long id, PersonDto person){       
             return ResponseEntity.ok(servicesImplPerson.updatePersonById(id, person));    
         
+    }
+
+    @PutMapping("/adicionar/endereço/{id}")
+    public ResponseEntity<Optional<PersonDto>> salvaPessoaComEndereco(@PathVariable Long id, @RequestBody Adress adress){
+        return ResponseEntity.ok(servicesImplPerson.registerAnewAdressToPerosnById(id, adress));
     }
 
 }

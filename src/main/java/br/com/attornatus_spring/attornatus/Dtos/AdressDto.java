@@ -11,6 +11,7 @@ public class AdressDto {
     private int number;
     private String city;   
     private StatusAdress status_adress;
+    
 
     public AdressDto(Adress adress){
         this.street = adress.getStreet();
@@ -18,9 +19,7 @@ public class AdressDto {
         this.number = adress.getNumber();
         this.city = adress.getCity();
         this.status_adress = adress.getStatus_adress();
-    }
-
-    
+    }    
     
     public AdressDto() {
     }

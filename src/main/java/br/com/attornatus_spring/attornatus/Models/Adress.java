@@ -30,9 +30,28 @@ public class Adress {
     private String city;
     @Enumerated(EnumType.STRING)
     private StatusAdress status_adress;
-    @ManyToOne(cascade = CascadeType.REFRESH)     
+    @ManyToOne
     @JoinColumn(name = "person_id")
     private Person person;
+    
+
+    public Adress(Long id, String street, String cEP, int number, String city, StatusAdress status_adress, Person person) {
+
+        this.id = id;
+        this.street = street;
+        CEP = cEP;
+        this.number = number;
+        this.city = city;
+        this.status_adress = status_adress;
+        this.person = person;
+    }
+    
+    
+
+    public Adress() {
+    }
+
+
 
     public Long getId() {
         return id;
@@ -71,14 +90,11 @@ public class Adress {
     public void setStatus_adress(StatusAdress status_adress) {
         this.status_adress = status_adress;
     }
-    
-    public Person getPerson() {
-        return person;
-    }
+
     public void setPerson(Person person) {
         this.person = person;
-    }  
-   
+    }
+    
     
     
 }
